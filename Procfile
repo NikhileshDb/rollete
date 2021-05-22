@@ -1,0 +1,1 @@
+web: gunicorn rollete.wsgi --log-file -
