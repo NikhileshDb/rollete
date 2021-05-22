@@ -1,1 +1,1 @@
-web: gunicorn rollete.wsgi
+web: gunicorn --pythonpath rollete rollete.wsgi
