@@ -23,7 +23,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-l#nmy%=u6cr-pzoua9_q#!c7rt90sl(em4mt3dmi3*=ke_tvfs'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['rollete.herokuapp.com', '127.0.0.1']
 
@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'abcd',
+    'rest_framework',
 ]
 
 MIDDLEWARE = [
