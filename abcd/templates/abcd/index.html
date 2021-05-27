@@ -1,0 +1,428 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- CSS only -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+    <!-- JavaScript Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link rel="stylesheet" href="{% static 'css/main.css' %}">
+    <script src="{% static 'js/main.js' %}"></script>
+    <title>Rollete</title>
+</head>
+<body>
+            <div class="d-flex justify-content-center">
+            <h1 class="bgcolor"> Rollete Trick 9</h1>
+            <div class="p-2">
+                {% if user.is_authenticated %}
+        Hi {{ user.username }}!
+        <p><a href="{% url 'logout' %}">Log Out</a></p>
+        {% else %}
+        <p>You are not logged in</p>
+        <a href="{% url 'login' %}">Log In</a>
+        {% endif %}
+        </div> 
+            </div>
+ 
+{% if user.is_superuser %}
+    <div class="d-flex justify-content-center">
+        <form method="post" action="{% url 'save_number' %}">
+            {% csrf_token %}
+            <div class="d-flex flex-row">
+            <div class="p-2">
+            <input type="number" name="number" class="form-control" placeholder="Enter Number" max="36">
+            </div>
+            <div class="p-2">
+            <button type="submit" id="sbtn"  class="btn btn-primary" >Submit</button>
+            </div>
+            <div class="p-2">
+            <a href="{% url 'del_number' %}"><i class="fas fa-sync fa-2x rotate"></i></a>
+            </div>
+            </div>   
+        </form>
+    </div>
+
+    {% endif %}
+
+    <div class="d-flex justify-content-center">
+    {% for message in messages %}
+    {% if message.tags == 'errors' %}
+    <div class="">
+    {{message}}
+    </div>
+    {% elif message.tags == 'success' %}
+    <div class="">
+    {{message}}
+    </div>
+    {% endif %}
+    {% endfor %}
+    </div>
+    <div class="d-flex justify-content-center">
+
+            <!----Show Some Usefull Charts-->
+            
+
+    </div>
+    <div class="d-flex flex-row justify-content-center">
+
+        <div class="p-2">
+            <table id="table1" class="table mx-auto">
+                <h3 class="text-center">Number</h3>
+               
+                <tbody id = "tb">
+   
+                    <tr id="ntdtr">
+                        {% for item in number|slice:":6" %}
+                            <td id= "">{{item.number}}</td>
+                         {% endfor %}
+                    </tr>
+                    <tr id="">
+                        {% for item in number|slice:"6:12" %}
+                            <td id= "">{{item.number}}</td>
+                         {% endfor %}
+                    </tr>
+                    <tr id="">
+                        {% for item in number|slice:"12:18" %}
+                            <td id= "">{{item.number}}</td>
+                         {% endfor %}
+                    </tr>
+                    <tr id="">
+                        {% for item in number|slice:"18:24" %}
+                            <td id= "">{{item.number}}</td>
+                         {% endfor %}
+                    </tr>
+                    <tr id="">
+                        {% for item in number|slice:"24:30" %}
+                            <td id= "">{{item.number}}</td>
+                         {% endfor %}
+                    </tr>
+                    <tr id="">
+                        {% for item in number|slice:"30:36" %}
+                            <td id= "">{{item.number}}</td>
+                         {% endfor %}
+                    </tr>
+                    <tr id="">
+                        {% for item in number|slice:"36:42" %}
+                            <td id= "">{{item.number}}</td>
+                         {% endfor %}
+                    </tr>
+                    <tr id="">
+                        {% for item in number|slice:"42:48" %}
+                            <td id= "">{{item.number}}</td>
+                         {% endfor %}
+                    </tr>
+                    <tr id="">
+                        {% for item in number|slice:"48:54" %}
+                            <td id= "">{{item.number}}</td>
+                         {% endfor %}
+                    </tr>
+                    <tr id="">
+                        {% for item in number|slice:"54:60" %}
+                            <td id= "">{{item.number}}</td>
+                         {% endfor %}
+                    </tr>
+                    <tr id="">
+                        {% for item in number|slice:"60:66" %}
+                            <td id= "">{{item.number}}</td>
+                         {% endfor %}
+                    </tr>
+                    <tr id="">
+                        {% for item in number|slice:"66:72" %}
+                            <td id= "">{{item.number}}</td>
+                         {% endfor %}
+                    </tr>
+                    <tr id="">
+                        {% for item in number|slice:"72:78" %}
+                            <td id= "">{{item.number}}</td>
+                         {% endfor %}
+                    </tr>
+                    <tr id="">
+                        {% for item in number|slice:"78:84" %}
+                            <td id= "">{{item.number}}</td>
+                         {% endfor %}
+                    </tr>
+                    <tr id="">
+                        {% for item in number|slice:"84:90" %}
+                            <td id= "">{{item.number}}</td>
+                         {% endfor %}
+                    </tr>
+                    <tr id="">
+                        {% for item in number|slice:"90:96" %}
+                            <td id= "">{{item.number}}</td>
+                         {% endfor %}
+                    </tr>
+
+                </tbody>
+              </table>
+              </div>
+
+    <div class="p-2">
+    <table id="table1" class="table mx-auto">
+        <h3 class="text-center">Number</h3>
+       
+        <tbody id = "tb">
+            <tr>
+            {% for sign in signs|slice:":6" %} 
+            <td id="tdcls">{{sign.sign}}</td>
+            {% endfor %}
+            </tr>
+            <tr>
+            {% for sign in signs|slice:"6:12" %} 
+            <td id="tdcls">{{sign.sign}}</td>
+            {% endfor %}
+            </tr>
+            <tr>
+            {% for sign in signs|slice:"12:18" %} 
+            <td id="tdcls">{{sign.sign}}</td>
+            {% endfor %}
+            </tr>
+            <tr>
+            {% for sign in signs|slice:"18:24" %} 
+            <td id="tdcls">{{sign.sign}}</td>
+            {% endfor %}
+            </tr>
+            <tr>
+            {% for sign in signs|slice:"24:30" %} 
+            <td id="tdcls">{{sign.sign}}</td>
+            {% endfor %}
+            </tr>
+            <tr>
+            {% for sign in signs|slice:"30:36" %} 
+            <td id="tdcls">{{sign.sign}}</td>
+            {% endfor %}
+            </tr>
+            <tr>
+            {% for sign in signs|slice:"36:42" %} 
+            <td id="tdcls">{{sign.sign}}</td>
+            {% endfor %}
+            </tr>
+            <tr>
+            {% for sign in signs|slice:"48:54" %} 
+            <td id="tdcls">{{sign.sign}}</td>
+            {% endfor %}
+            </tr>
+            <tr>
+            {% for sign in signs|slice:"54:60" %} 
+            <td id="tdcls">{{sign.sign}}</td>
+            {% endfor %}
+            </tr>
+            <tr>
+            {% for sign in signs|slice:"60:66" %} 
+            <td id="tdcls">{{sign.sign}}</td>
+            {% endfor %}
+            </tr>
+            <tr>
+            {% for sign in signs|slice:"66:72" %} 
+            <td id="tdcls">{{sign.sign}}</td>
+            {% endfor %}
+            </tr>
+            <tr>
+            {% for sign in signs|slice:"72:78" %} 
+            <td id="tdcls">{{sign.sign}}</td>
+            {% endfor %}
+            </tr>
+            <tr>
+            {% for sign in signs|slice:"78:84" %} 
+            <td id="tdcls">{{sign.sign}}</td>
+            {% endfor %}
+            </tr>
+        <tr>
+        {% for sign in signs|slice:"84:90" %} 
+        <td id="tdcls">{{sign.sign}}</td>
+        {% endfor %}
+        </tr>
+        <tr>
+        {% for sign in signs|slice:"90:96" %} 
+        <td id="tdcls">{{sign.sign}}</td>
+        {% endfor %}
+        </tr>
+        </tbody>
+      </table>
+      </div>
+      <div>
+    </div>
+    <div class="p-2">
+        <table class="table  mx-auto">
+            <h3 class="text-center">Dozen</h3>
+            <tbody>
+                <tr>
+                {% for sign in dozen|slice:":6" %} 
+                <td>{{sign.dozen}}</td>
+                {% endfor %}
+                </tr>
+                <tr>
+                {% for sign in dozen|slice:"6:12" %} 
+                <td>{{sign.dozen}}</td>
+                {% endfor %}
+                </tr>
+                <tr>
+                {% for sign in dozen|slice:"12:18" %} 
+                <td>{{sign.dozen}}</td>
+                {% endfor %}
+                </tr>
+                <tr>
+                {% for sign in dozen|slice:"18:24" %} 
+                <td>{{sign.dozen}}</td>
+                {% endfor %}
+                </tr>
+                <tr>
+                {% for sign in dozen|slice:"24:30" %} 
+                <td>{{sign.dozen}}</td>
+                {% endfor %}
+                </tr>
+                <tr>
+                {% for sign in dozen|slice:"30:36" %} 
+                <td>{{sign.dozen}}</td>
+                {% endfor %}
+                </tr>
+                <tr>
+                {% for sign in dozen|slice:"36:42" %} 
+                <td>{{sign.dozen}}</td>
+                {% endfor %}
+                </tr>
+                <tr>
+                {% for sign in dozen|slice:"42:48" %} 
+                <td>{{sign.dozen}}</td>
+                {% endfor %}
+                </tr>
+                 <tr>
+                {% for sign in dozen|slice:"48:54" %} 
+                <td>{{sign.dozen}}</td>
+                {% endfor %}
+                </tr>
+                <tr>
+                {% for sign in dozen|slice:"54:60" %} 
+                <td>{{sign.dozen}}</td>
+                {% endfor %}
+                </tr>
+                <tr>
+                {% for sign in dozen|slice:"60:66" %} 
+                <td>{{sign.dozen}}</td>
+                {% endfor %}
+                </tr>
+                <tr>
+                {% for sign in dozen|slice:"66:72" %} 
+                <td>{{sign.dozen}}</td>
+                {% endfor %}
+                </tr>
+                <tr>
+                {% for sign in dozen|slice:"78:84" %} 
+                <td>{{sign.dozen}}</td>
+                {% endfor %}
+                </tr>
+                <tr>
+                {% for sign in dozen|slice:"90:96" %} 
+                <td>{{sign.dozen}}</td>
+                {% endfor %}
+                </tr>
+            </tbody>
+          </table>
+    </div>
+    <div class="p-2">
+        <table class="table  mx-auto">
+            <h3 class="text-center">Column</h3>
+            <tbody>
+                <tr>
+                {% for sign in column|slice:":6" %} 
+                <td class="">{{sign.column}}</td>
+                {% endfor %}
+                </tr>
+                <tr>
+                {% for sign in column|slice:"6:12" %} 
+                <td class="">{{sign.column}}</td>
+                {% endfor %}
+                </tr>
+                <tr>
+                {% for sign in column|slice:"12:18" %} 
+                <td class="">{{sign.column}}</td>
+                {% endfor %}
+                </tr>
+                <tr>
+                {% for sign in column|slice:"18:24" %} 
+                <td class="">{{sign.column}}</td>
+                {% endfor %}
+                </tr>
+                <tr>
+                {% for sign in column|slice:"24:30" %} 
+                <td class="">{{sign.column}}</td>
+                {% endfor %}
+                </tr>
+                <tr>
+                {% for sign in column|slice:"30:36" %} 
+                <td class="">{{sign.column}}</td>
+                {% endfor %}
+                </tr>
+                <tr>
+                {% for sign in column|slice:"36:42" %} 
+                <td class="">{{sign.column}}</td>
+                {% endfor %}
+                </tr>
+                <tr>
+                {% for sign in column|slice:"42:48" %} 
+                <td class="">{{sign.column}}</td>
+                {% endfor %}
+                </tr>
+                <tr>
+                {% for sign in column|slice:"48:54" %} 
+                <td class="">{{sign.column}}</td>
+                {% endfor %}
+                </tr>
+                <tr>
+                {% for sign in column|slice:"54:60" %} 
+                <td class="">{{sign.column}}</td>
+                {% endfor %}
+                </tr>
+                <tr>
+                {% for sign in column|slice:"60:66" %} 
+                <td class="">{{sign.column}}</td>
+                {% endfor %}
+                </tr>
+                <tr>
+                {% for sign in column|slice:"72:78" %} 
+                <td class="">{{sign.column}}</td>
+                {% endfor %}
+                </tr>
+                <tr>
+                {% for sign in column|slice:"78:84" %} 
+                <td class="">{{sign.column}}</td>
+                {% endfor %}
+                </tr>
+                <tr>
+                {% for sign in column|slice:"90:96" %} 
+                <td class="">{{sign.column}}</td>
+                {% endfor %}
+                </tr>
+            </tbody>
+          </table>
+    </div>
+    </div>
+    <script>
+        $(".rotate").click(function(){
+             $(this).toggleClass("down"); 
+        });
+            
+        $(function() {
+            $("#table1 td").each(function() {
+                if ($(this).text() == 'A') {
+                    $(this).css('color', 'red');
+            }
+        });
+        });
+        $(function() {
+            $("#table1 td").each(function() {
+                if ($(this).text() == 'C') {
+                    $(this).css('color', 'red');
+            }
+        });
+        });
+
+        
+            
+    </script>
+</body>
+</html>

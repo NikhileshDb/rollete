@@ -1,0 +1,33 @@
+{% extends 'abcd/base.html' %}
+
+{% block login %}
+<div class="d-flex justify-content-center"><h2>Login</h2></div>
+<form class="" method="post">
+  <div class="d-flex justify-content-center">
+  {% csrf_token %}
+    <div class="formcontrol">
+          {{form}}
+          <button type="submit">Log In</button>
+
+  
+          <a href="{% url 'register' %}">Create New Account</a>
+        </div>
+        </div>
+</form>
+<div class="d-flex justify-content-center">
+  {% for message in messages %}
+  {% if message.tags == 'errors' %}
+  <div class="">
+  {{message}}
+  </div>
+  {% elif message.tags == 'success' %}
+  <div class="">
+  {{message}}
+  </div>
+  {% endif %}
+  {% endfor %}
+  <p>user-id is = anonuser and 
+  password = secret@Password</p>
+  </div>
+
+{% endblock %}
